@@ -1,39 +1,43 @@
-// Função para calcular saldo e determinar o nível
-function calcularSaldoERank(vitorias, derrotas) {
-    // Calculando o saldo
-    let saldoVitorias = vitorias - derrotas;
-    let nivel;
-
-    // Estrutura de decisão para determinar o nível
-    if (vitorias < 10) {
-        nivel = "Ferro";
-    } else if (vitorias >= 11 && vitorias <= 20) {
-        nivel = "Bronze";
-    } else if (vitorias >= 21 && vitorias <= 50) {
-        nivel = "Prata";
-    } else if (vitorias >= 51 && vitorias <= 80) {
-        nivel = "Ouro";
-    } else if (vitorias >= 81 && vitorias <= 90) {
-        nivel = "Diamante";
-    } else if (vitorias >= 91 && vitorias <= 100) {
-        nivel = "Lendário";
-    } else if (vitorias >= 101) {
-        nivel = "Imortal";
-    } else {
-        nivel = "Desconhecido"; // Caso o valor seja inválido
+// Definindo a classe Heroi
+class Heroi {
+    constructor(nome, idade, tipo) {
+        this.nome = nome;
+        this.idade = idade;
+        this.tipo = tipo;
     }
 
-    // Retorna o resultado como um objeto
-    return { saldoVitorias, nivel };
+    atacar() {
+        let ataque;
+
+        switch (this.tipo) {
+            case 'mago':
+                ataque = 'magia';
+                break;
+            case 'guerreiro':
+                ataque = 'espada';
+                break;
+            case 'monge':
+                ataque = 'artes marciais';
+                break;
+            case 'ninja':
+                ataque = 'shuriken';
+                break;
+            default:
+                ataque = 'realizou um ataque';
+        }
+
+        console.log(`O ${this.tipo} atacou usando ${ataque}`);
+    }
 }
 
-// Entrada de dados pelo usuário
-const prompt = require("prompt-sync")();
-let vitorias = parseInt(prompt("Digite o número de vitórias: "));
-let derrotas = parseInt(prompt("Digite o número de derrotas: "));
+// Criando instâncias da classe Heroi
+const heroi1 = new Heroi('Aragorn', 30, 'guerreiro');
+const heroi2 = new Heroi('Gandalf', 1000, 'mago');
+const heroi3 = new Heroi('Bruce Lee', 32, 'monge');
+const heroi4 = new Heroi('Hattori Hanzo', 25, 'ninja');
 
-// Chamando a função e obtendo os resultados
-const resultado = calcularSaldoERank(vitorias, derrotas);
-
-// Exibindo a saída
-console.log(`O Herói tem saldo de ${resultado.saldoVitorias} e está no nível de ${resultado.nivel}.`);
+// Chamando o método atacar para cada herói
+heroi1.atacar();
+heroi2.atacar();
+heroi3.atacar();
+heroi4.atacar();
